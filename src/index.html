@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focal Point | Pomodoro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="pomodoro">
+
+    <div class="app">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo">focal<span>point</span></div>
+            <div class="header-actions">
+                <button class="icon-btn" id="statsBtn">📊</button>
+                <button class="icon-btn" id="settingsBtn">⚙️</button>
+            </div>
+        </header>
+
+        <!-- MODES -->
+        <div class="mode-tabs">
+            <button class="tab active" data-mode="pomodoro" aria-selected="true">Odaklan</button>
+            <button class="tab" data-mode="short" aria-selected="false">Kısa Mola</button>
+            <button class="tab" data-mode="long" aria-selected="false">Uzun Mola</button>
+        </div>
+
+        <!-- TIMER -->
+        <section class="timer-section">
+            <div class="timer-ring-wrapper">
+                <svg class="timer-ring" viewBox="0 0 220 220">
+                    <circle class="ring-bg" cx="110" cy="110" r="100"></circle>
+                    <circle class="ring-progress" id="ringProgress" cx="110" cy="110" r="100"></circle>
+                </svg>
+                <div class="timer-display">
+                    <div class="time" id="timeDisplay">25:00</div>
+                    <div class="session-label" id="sessionLabel">Odaklan</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="ctrl-btn" id="resetBtn">↺</button>
+                <button class="start-btn" id="startBtn">BAŞLAT</button>
+                <button class="ctrl-btn" id="skipBtn">⏭</button>
+            </div>
+
+            <div class="session-counter">
+                <div class="dots" id="sessionDots"></div>
+                <div class="session-text">Bugün: <span id="sessionCount">0</span> oturum</div>
+            </div>
+        </section>
+
+        <!-- TASKS -->
+        <section class="task-section">
+            <div class="task-header">
+                <h2>Görevler</h2>
+                <button class="add-task-btn" id="addTaskBtn">+ Görev Ekle</button>
+            </div>
+            
+            <div class="task-input-wrap" id="taskInputWrap" hidden>
+                <input type="text" class="task-input" id="taskInput" placeholder="Ne üzerinde çalışıyorsun?">
+                <button class="confirm-btn" id="confirmTask">✓</button>
+                <button class="cancel-btn" id="cancelTask">✕</button>
+            </div>
+
+            <ul class="task-list" id="taskList"></ul>
+            <div class="empty-state" id="emptyState">Henüz görev eklemedin.</div>
+        </section>
+    </div>
+
+    <!-- MODALS -->
+    <!-- Settings -->
+    <div class="modal-overlay" id="settingsModal" hidden>
+        <div class="modal">
+            <div class="modal-header"><h3>Ayarlar</h3><button id="closeSettings">✕</button></div>
+            <div class="modal-body">
+                <div class="setting-group"><label>Odak (dk)</label><input type="number" id="setPomodoro"></div>
+                <div class="setting-group"><label>Kısa Mola (dk)</label><input type="number" id="setShort"></div>
+                <div class="setting-group"><label>Uzun Mola (dk)</label><input type="number" id="setLong"></div>
+                <div class="setting-group"><label>Set Aralığı</label><input type="number" id="setInterval"></div>
+                <div class="setting-group toggle-group"><label>Sesli Bildirim</label><label class="toggle"><input type="checkbox" id="setSoundEnabled"><span class="toggle-slider"></span></label></div>
+                <div class="setting-group toggle-group"><label>Otomatik Başlat</label><label class="toggle"><input type="checkbox" id="setAutoStart"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="modal-footer"><button class="save-btn" id="saveSettings">Kaydet</button></div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="modal-overlay" id="statsModal" hidden>
+        <div class="modal">
+            <div class="modal-header"><h3>İstatistikler</h3><button id="closeStats">✕</button></div>
+            <div class="modal-body">
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-value" id="statToday">0</span><span class="stat-label">Bugün</span></div>
+                    <div class="stat-card"><span class="stat-value" id="statTotal">0</span><span class="stat-label">Toplam</span></div>
+                    <div class="stat-card"><span class="stat-value" id="statStreak">0</span><span class="stat-label">Seri</span></div>
+                    <div class="stat-card"><span class="stat-value" id="statTasks">0</span><span class="stat-label">Görev</span></div>
+                </div>
+                <button class="reset-stats-btn" id="resetStats">İstatistikleri Sıfırla</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
